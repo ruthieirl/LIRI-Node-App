@@ -1,60 +1,73 @@
+//Variables
 var request = require("request");
 var keys = require("./keys.js");
 var fs = require("fs");
 var Twitter = require("twitter");
-var client = new Twitter("keys");
+var client = new Twitter(keys);
 var Spotify = require("node-spotify-api");
 var command = process.argv[2];
 var a = process.argv[3];
+console.log("A is " + a);
 var params = {
-	"screen_name" : "ruthiec_irl",
-	"count" : 20
+	screen_name : "ruthiec_irl",
+	count : 20
 };
+var spotify = new Spotify({
+		id: "29852749495a40fb8b8a5232f8b4c548",
+		secret: "b7fd7f906b784ae2a1c70a0cfc3a16d0",
+});
 
+
+//Twitter Function to show last 20 tweets
 function showTweets() {
-	client.GET('statuses/user_timeline', params, function (error, tweets, response) {
+	client.get('statuses/user_timeline', params, function (error, tweets, response) {
 		if (!error) {
 			for (var i = 0; i < tweets.length; i++) {
 				console.log("\n****************************************\n");
 				console.log("Tweet: " + tweets[i].text);
 				console.log("Created: " + tweets[i].created_at);
 				console.log("\n****************************************\n");
-			}
+			} 
+		} else {
+			console.log(error);
 		}
 	})
 };
 
+//Spotify Function to play a song by title
 function playSong(a) {
-	var spotify = new Spotify({
-		id: "29852749495a40fb8b8a5232f8b4c548",
-		secret: "b7fd7f906b784ae2a1c70a0cfc3a16d0",
-	});
-
+	if (a === "" || a === undefined) {
+		a = "The Sign";
+	}
 	spotify.search({
-		"type" : "track", 
-		"query" : a
+		type : "track", 
+		query : a
 	}, function (error, data) {
 		if (error) {
 			console.log(error + "\n");
-		} else if (a === "") {
-			a = "The Sign";
 		} else {
 			console.log("\n****************************************\n");
-			console.log("Artist: " + data.tracks.item[i].album.artists[i].name);
-			console.log("Song: " + data.tracks.item[i].name);
-			console.log("Preview: " + data.tracks.item[i].preview_url);
-			console.log("Album: " + data.tracks.item[i].album.name);
+			//Artist Name
+			console.log("Artist: " + data.tracks.items[0].album.artists[0].name);
+			//Song Name
+			console.log("Song: " + data.tracks.items[0].name);
+			//Preview URL
+			console.log("Preview: " + data.tracks.items[0].preview_url);
+			//Album Name
+			console.log("Album: " + data.tracks.items[0].album.name);
 			console.log("\n****************************************\n");
 		}
 	})
 };
 
+//OMDB Function to show movie details
 function showMovie(a) {
 	var myQuery = "http://www.omdbapi.com/?t=" + a + "&y=&plot=short&apikey=40e9cece";
 
 	request(myQuery, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
 			console.log("\n****************************************\n");
+			//Console Log all movie details below
 			console.log("Title: " + JSON.parse(body).Title);
 			console.log("Year Released: " + JSON.parse(body).Year);
 			console.log("IMDB Rating: " +JSON.parse(body).Ratings[0]);
@@ -68,21 +81,27 @@ function showMovie(a) {
 	})
 };
 
+//Dow What It Says Function
 function doSomething() {
-
+	fs.readFile("./random.txt", "utf8", function(err, data) {
+		if (err) throw err;
+		console.log(data);
+	});
 };
 
+//Switch statement to run above functions
 switch(command) {
+	
 	case "my-tweets":
 	showTweets();
 	break;
 
 	case "spotify-this-song":
-	playSong();
+	playSong(a);
 	break;
 
 	case "movie-this":
-	showMovie();
+	showMovie(a);
 	break;
 
 	case "do-what-it-says":
