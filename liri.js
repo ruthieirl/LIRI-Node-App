@@ -11,7 +11,14 @@ var params = {
 };
 
 function showTweets() {
-
+	client.GET('statuses/user_timeline', params, function (error, tweets, response) {
+		if (!error) {
+			for (var i = 0; i < tweets.length; i++) {
+				console.log("Tweet: " + tweets[i].text);
+				console.log("Created: " + tweets[i].created_at);
+			}
+		}
+	})
 };
 
 function playSong() {
@@ -22,7 +29,7 @@ function showMovie() {
 
 };
 
-function dwis() {
+function doSomething() {
 
 };
 
@@ -40,7 +47,7 @@ switch(command) {
 	break;
 
 	case "do-what-it-says":
-	dwis();
+	doSomething();
 	break;
 
 	default:
