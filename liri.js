@@ -14,8 +14,10 @@ function showTweets() {
 	client.GET('statuses/user_timeline', params, function (error, tweets, response) {
 		if (!error) {
 			for (var i = 0; i < tweets.length; i++) {
+				console.log("\n****************************************\n");
 				console.log("Tweet: " + tweets[i].text);
 				console.log("Created: " + tweets[i].created_at);
+				console.log("\n****************************************\n");
 			}
 		}
 	})
