@@ -52,7 +52,7 @@ function playSong(a) {
 			//Song Name
 			console.log("Song: " + data.tracks.items[0].name);
 			//Preview URL
-			console.log("Preview: " + data.tracks.items[0].preview_url);
+			console.log("Preview URL: " + data.tracks.items[0].preview_url);
 			//Album Name
 			console.log("Album: " + data.tracks.items[0].album.name);
 			console.log("\n****************************************\n");
@@ -65,7 +65,23 @@ function showMovie(a) {
 	var myQuery = "http://www.omdbapi.com/?t=" + a + "&y=&plot=short&apikey=40e9cece";
 
 	request(myQuery, function(error, response, body) {
-		if (!error && response.statusCode === 200) {
+		if (a === undefined) {
+			var a = "Mr. Nobody";
+			var myQuery = "http://www.omdbapi.com/?t=" + a + "&y=&plot=short&apikey=40e9cece"
+			request(myQuery, function(error, response, body) {
+				console.log("\n****************************************\n");
+				//Console Log all movie details below
+				console.log("Title: " + JSON.parse(body).Title);
+				console.log("Year Released: " + JSON.parse(body).Year);
+				console.log("IMDB Rating: " +JSON.parse(body).Ratings[0]);
+				console.log('Rotten Tomatoes Rating: ' + JSON.parse(body).Ratings[1]);
+				console.log("Country of Production: " + JSON.parse(body).Country);
+				console.log("Language: " + JSON.parse(body).Language);
+				console.log("Plot: " + JSON.parse(body).Plot);
+				console.log("Actors: " + JSON.parse(body).Actors);
+				console.log("\n****************************************\n");
+			})
+		} else if (!error && response.statusCode === 200) {
 			console.log("\n****************************************\n");
 			//Console Log all movie details below
 			console.log("Title: " + JSON.parse(body).Title);
@@ -81,11 +97,13 @@ function showMovie(a) {
 	})
 };
 
-//Dow What It Says Function
+//Do What It Says Function
 function doSomething() {
 	fs.readFile("./random.txt", "utf8", function(err, data) {
-		if (err) throw err;
-		console.log(data);
+		if (err) {
+			throw err;
+		}
+		console.log(data.split(","));
 	});
 };
 
@@ -109,6 +127,17 @@ switch(command) {
 	break;
 
 	default:
-	console.log("Not a valid request.");
+	console.log("*******************************************");
+	console.log("****        Not A Valid Request        ****");
+	console.log("*******************************************");
+	console.log("Please enter one of the following commands:");
+	console.log("****                                   ****");
+	console.log("****             my-tweets             ****");
+	console.log("****         spotify-this-song         ****");
+	console.log("****             movie-this            ****");
+	console.log("****          do-what-it-says          ****");
+	console.log("****                                   ****");
+	console.log("*******************************************");
+	console.log("*******************************************");
 	break;
 };
