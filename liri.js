@@ -36,6 +36,7 @@ function showTweets() {
 
 //Spotify Function to play a song by title
 function playSong(a) {
+	console.log(a);
 	if (a === "" || a === undefined) {
 		a = "The Sign";
 	}
@@ -102,8 +103,14 @@ function doSomething() {
 	fs.readFile("./random.txt", "utf8", function(err, data) {
 		if (err) {
 			throw err;
+		} else {
+			var dataArr = data.split(",");
+			console.log(dataArr);
+			console.log(dataArr[1]);
+			a = dataArr[1];
+			console.log(a);
+			playSong(a);
 		}
-		console.log(data.split(","));
 	});
 };
 
