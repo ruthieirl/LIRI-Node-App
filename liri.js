@@ -7,7 +7,6 @@ var client = new Twitter(keys);
 var Spotify = require("node-spotify-api");
 var command = process.argv[2];
 var a = process.argv[3];
-console.log("A is " + a);
 var params = {
 	screen_name : "ruthiec_irl",
 	count : 20
@@ -36,11 +35,11 @@ function showTweets() {
 
 //Spotify Function to play a song by title
 function playSong(a) {
-	console.log(a);
 	if (a === "" || a === undefined) {
-		a = "The Sign";
-	}
-	spotify.search({
+		a = "Ace of Base";
+		playSong(a);
+	} else {
+		spotify.search({
 		type : "track", 
 		query : a
 	}, function (error, data) {
@@ -59,6 +58,7 @@ function playSong(a) {
 			console.log("\n****************************************\n");
 		}
 	})
+	}
 };
 
 //OMDB Function to show movie details
@@ -105,10 +105,7 @@ function doSomething() {
 			throw err;
 		} else {
 			var dataArr = data.split(",");
-			console.log(dataArr);
-			console.log(dataArr[1]);
 			a = dataArr[1];
-			console.log(a);
 			playSong(a);
 		}
 	});
