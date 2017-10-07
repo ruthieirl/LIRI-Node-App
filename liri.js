@@ -21,6 +21,7 @@ var spotify = new Spotify({
 function showTweets() {
 	client.get('statuses/user_timeline', params, function (error, tweets, response) {
 		if (!error) {
+			//loop thru 20 times as set with count
 			for (var i = 0; i < tweets.length; i++) {
 				console.log("\n****************************************\n");
 				console.log("Tweet: " + tweets[i].text);
@@ -35,9 +36,11 @@ function showTweets() {
 
 //Spotify Function to play a song by title
 function playSong(a) {
+	//if there is no song entered, it will default to the Sign, by Ace of Base
 	if (a === "" || a === undefined) {
 		a = "Ace of Base";
 		playSong(a);
+	//else it will return the correct data for the song title entered
 	} else {
 		spotify.search({
 		type : "track", 
@@ -63,10 +66,13 @@ function playSong(a) {
 
 //OMDB Function to show movie details
 function showMovie(a) {
+	//Will insert movie name into the URL with correct end point
 	var myQuery = "http://www.omdbapi.com/?t=" + a + "&y=&plot=short&apikey=40e9cece";
 	request(myQuery, function(error, response, body) {
+		//if a is undefined, it will default to showing Mr. Nobody details
 		if (a === "" || a === undefined) {
 			showMovie("Mr Nobody");
+		//if it is not an error and success code, it will desplayed the entered movie's details
 		} else if (!error && response.statusCode === 200) {
 			console.log("\n****************************************\n");
 			//Console Log all movie details below
@@ -85,6 +91,7 @@ function showMovie(a) {
 
 //Do What It Says Function
 function doSomething() {
+	//file system npm reads file in alphanumeric english
 	fs.readFile("./random.txt", "utf8", function(err, data) {
 		if (err) {
 			throw err;
