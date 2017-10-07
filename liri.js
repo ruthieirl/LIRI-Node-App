@@ -7,6 +7,7 @@ var client = new Twitter(keys);
 var Spotify = require("node-spotify-api");
 var command = process.argv[2];
 var a = process.argv[3];
+console.log("a is " + a);
 var params = {
 	screen_name : "ruthiec_irl",
 	count : 20
@@ -64,25 +65,13 @@ function playSong(a) {
 //OMDB Function to show movie details
 function showMovie(a) {
 	var myQuery = "http://www.omdbapi.com/?t=" + a + "&y=&plot=short&apikey=40e9cece";
-
+	console.log(a);
 	request(myQuery, function(error, response, body) {
-		if (a === undefined) {
-			var a = "Mr. Nobody";
-			var myQuery = "http://www.omdbapi.com/?t=" + a + "&y=&plot=short&apikey=40e9cece"
-			request(myQuery, function(error, response, body) {
-				console.log("\n****************************************\n");
-				//Console Log all movie details below
-				console.log("Title: " + JSON.parse(body).Title);
-				console.log("Year Released: " + JSON.parse(body).Year);
-				console.log("IMDB Rating: " +JSON.parse(body).Ratings[0]);
-				console.log('Rotten Tomatoes Rating: ' + JSON.parse(body).Ratings[1]);
-				console.log("Country of Production: " + JSON.parse(body).Country);
-				console.log("Language: " + JSON.parse(body).Language);
-				console.log("Plot: " + JSON.parse(body).Plot);
-				console.log("Actors: " + JSON.parse(body).Actors);
-				console.log("\n****************************************\n");
-			})
+		console.log("Boo: " + a);
+		if (a === "" || a === undefined) {
+			showMovie("Mr Nobody");
 		} else if (!error && response.statusCode === 200) {
+			console.log(a);
 			console.log("\n****************************************\n");
 			//Console Log all movie details below
 			console.log("Title: " + JSON.parse(body).Title);
