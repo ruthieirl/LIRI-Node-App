@@ -26,13 +26,13 @@ To experience this application:
 
 ### What does each command do?
 
-* 'node liri my-tweets'
+* `node liri my-tweets`
 
   Displays my last 20 tweets and when they were created in the window. See below:
 
 ![Imgur](https://i.imgur.com/cDktwOM.png)
 
-* 'node liri spotify-this-song <'song name'>'
+* `node liri spotify-this-song <'song name'>`
 
   Displays the following information is the window:
 
@@ -49,7 +49,7 @@ To experience this application:
 
 ![Imgur](https://i.imgur.com/ZEtXmae.png)
 
-* 'node liri movie-this <'movie name'>'
+* `node liri movie-this <'movie name'>`
 
   Displays the following information in the window.
 
@@ -70,7 +70,7 @@ To experience this application:
 
 ![Imgur](https://i.imgur.com/lCbwXpg.png)
 
-* 'node liri do-what-it-says'
+* `node liri do-what-it-says`
 
   Takes the text from random.txt and does what it says. In this particular case, it will spotify "I Want It That Way" by the Backstreet Boys. See below:
 
