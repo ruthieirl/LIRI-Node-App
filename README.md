@@ -30,7 +30,7 @@ To experience this application:
 
   Displays my last 20 tweets and when they were created in the window. See below:
 
-![Imgur](https://i.imgur.com/cDktwOM.png)
+  ![Imgur](https://i.imgur.com/cDktwOM.png)
 
 * `node liri spotify-this-song <'song name'>`
 
@@ -43,11 +43,11 @@ To experience this application:
 
   See below:
 
- ![Imgur](https://i.imgur.com/ogx5aZE.png)
+  ![Imgur](https://i.imgur.com/ogx5aZE.png)
 
   If there is no song name, it will default to "The Sign" by Ace of Base. See below:
 
-![Imgur](https://i.imgur.com/ZEtXmae.png)
+  ![Imgur](https://i.imgur.com/ZEtXmae.png)
 
 * `node liri movie-this <'movie name'>`
 
@@ -64,17 +64,17 @@ To experience this application:
 
   See below:
 
-![Imgur](https://i.imgur.com/ZzhhQUj.png)
+  ![Imgur](https://i.imgur.com/ZzhhQUj.png)
 
   If there is no movie name, it will default to "Mr. Nobody". See below:
 
-![Imgur](https://i.imgur.com/lCbwXpg.png)
+  ![Imgur](https://i.imgur.com/lCbwXpg.png)
 
 * `node liri do-what-it-says`
 
   Takes the text from random.txt and does what it says. In this particular case, it will spotify "I Want It That Way" by the Backstreet Boys. See below:
 
-![Imgur](https://i.imgur.com/pwRRayL.png)
+  ![Imgur](https://i.imgur.com/pwRRayL.png)
 
 **Do you have a command for LIRI?**
 
